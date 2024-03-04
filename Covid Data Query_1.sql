@@ -53,7 +53,7 @@ Select date, Sum(new_cases) as Total_cases, Sum(new_deaths) as Total_deaths, sum
 --Total population vs vaccination
 
  Select dea.continent, dea.location, dea.date, dea.population, vac.new_vaccinations,
- sum(convert(bigint,vac.new_vaccinations)) Over (Partition by dea.location order by dea.location,dea.date) as RoolingPeopleVacinated -- using bigint since arithematic overflow error.
+ sum(convert(bigint,vac.new_vaccinations)) Over (Partition by dea.location order by dea.location,dea.date) as RollingPeopleVacinated -- using bigint since arithematic overflow error.
  From ProtfolioProjects..CovidDeathsNew$ as dea
  join ProtfolioProjects..CovidVaccinesNew$ as vac
 	on dea.location = vac.location
